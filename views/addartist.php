@@ -12,7 +12,7 @@
     <form action="/addartist" method="post" enctype="multipart/form-data">
         <div class="space-y-12">
             <div class="border-b border-gray-900/10 pb-8">
-                <h2 class="text-base font-semibold leading-7 text-gray-900">Add Music</h2>
+                <h2 class="text-base font-semibold leading-7 text-gray-900">Add artist</h2>
                 <div class="mt-3 grid grid-cols-1 gap-x-5 gap-y-5 sm:grid-cols-4">
                 
                     <div class="sm:col-span-4">
@@ -37,7 +37,7 @@
                                     <label for="file-upload"
                                         class="relative cursor-pointer rounded-md bg-white font-semibold text-indigo-600 focus-within:outline-none focus-within:ring-2 focus-within:ring-indigo-600 focus-within:ring-offset-2 hover:text-indigo-500">
                                         <span>Upload a file</span>
-                                        <input type="file" id="file-upload" name="artist[]"  multiple ="multiple">
+                                        <input type="file" id="file-upload" name ="artist[]"  multiple ="multiple">
                                     </label>
                                 </div>
                                 <p class="text-xs leading-5 text-gray-600">only JPG</p>

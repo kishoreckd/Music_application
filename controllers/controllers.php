@@ -53,8 +53,9 @@ class Controller {
     /**Adding Music*/
     public function addArtist($artist,$image){
         if ($artist and $image){
-var_dump($artist);
-var_dump($image);
+            $this->Model->addArtist($artist,$image);
+            echo "okie";
+
         }
         else{
             require "views/addartist.php";

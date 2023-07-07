@@ -44,11 +44,12 @@ create table album(
     FOREIGN KEY (album_artist) REFERENCES artist(id)
 );
 
+
 CREATE TABLE images (
 id int not null AUTO_INCREMENT,
 image_path varchar(255),
-    artist_id int,
-    album_id int,
+    artist_id int null,
+    album_id int null,
     PRIMARY key (id),
     FOREIGN key (artist_id) REFERENCES artist(id),
         FOREIGN key (album_id) REFERENCES album(id)
