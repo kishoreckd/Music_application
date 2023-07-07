@@ -18,6 +18,11 @@ $router->post('/addartist','addartist');
 $router->post('/musiclist','musiclist');
 $router->post('/artistlist','artistlist');
 $router->post('/addplaylist','addplaylist');
+$router->post('/addplaylistalbum','addplaylistalbum');
+$router->post('/addplaylistartist','addplaylistartist');
+
+
+
 
 
 

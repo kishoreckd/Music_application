@@ -53,6 +53,13 @@ class router
                         case'addplaylist':
                             $this->controller->addplaylist($_POST);
                             break;
+                        case'addplaylistalbum':
+                            $this->controller->addplaylistalbum($_POST);
+                            break;
+                        case'addplaylistartist':
+                            $this->controller->addplaylistartist($_POST);
+                            break;
+
                             case'musiclist':
                         $this->controller->musiclist();
                         break;

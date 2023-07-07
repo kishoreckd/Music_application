@@ -30,29 +30,35 @@ class Controller {
     }
     public  function addplaylist($datas){
         if ($datas){
-            var_dump($datas);
-
             if ($datas['playlist_for'] =='Artist'){
                 $artist=$this->Model->showArtist();
                 $_SESSION['Artist']=$datas['playlist_for'];
-                require "views/addplaylist.view.php";
-
+                require "views/addplaylistartist.view.php";
             }
             if ($datas['playlist_for'] =='Album'){
                 $album=$this->Model->showMusic();
                 $_SESSION['Album']=$datas['playlist_for'];
-                require "views/addplaylist.view.php";
-
+                require "views/addplaylistalbum.view.php";
             }
-
-
-
         }
         else{
             require "views/addplaylist.view.php";
         }
 
     }
+    public function addplaylistalbum($albums){
+//        addplaylist
+        $this->Model->addplaylistalbums($albums);
+        $this->home();
+
+    }
+    public function addplaylistartist($albums){
+//        addplaylist
+        $this->Model->addplaylistartist($albums);
+        $this->home();
+
+    }
+
 
     /**checking if the user is logged in **/
     public function loginPage($data){

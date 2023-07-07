@@ -108,4 +108,14 @@ class Model extends database{
         $artistnames=$this->db->query("select * from artist" )->fetchAll(PDO::FETCH_OBJ);
         return$artistnames;
     }
+    public function addplaylistalbums($data){
+        foreach ($data['album'] as $datas){
+            $this->db->query("Insert into playlist (album_id,created_at) values ('$datas',now())");
+        }
+    }
+    public function addplaylistartist($data){
+        foreach ($data['album'] as $datas){
+            $this->db->query("Insert into playlist (artist_id,created_at) values ('$datas',now())");
+        }
+    }
 }

@@ -71,3 +71,9 @@ CREATE TABLE playlist(
         FOREIGN key(album_id) REFERENCES album(id)
 
 );
+CREATE TABLE request(
+id INT NOT null AUTO_INCREMENT,
+user_id int,
+    is_approved int,
+PRIMARY key (id),
+FOREIGN KEY(user_id) REFERENCES registration(id));
