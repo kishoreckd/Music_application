@@ -33,11 +33,32 @@ class Controller {
         }
     }
 
-
-    /*logged out logout user*/
+    /**logged out logout user*/
     public function logout(){
         session_destroy();
         $this->home();
 
     }
+    /**Adding Music*/
+
+    public function addMusic($data){
+        if ($data){
+
+        }
+        else{
+            require "views/addmusic.php";
+        }
+    }
+
+    /**Adding Music*/
+    public function addArtist($artist,$image){
+        if ($artist and $image){
+var_dump($artist);
+var_dump($image);
+        }
+        else{
+            require "views/addartist.php";
+        }
+    }
+
 }

@@ -61,7 +61,16 @@ class router
                             break;
                         case'logout':
 //                            echo "";
-                            $this->controller->logout($_POST);
+                            $this->controller->logout();
+                            break;
+                        case'addmusic':
+//                            echo "";
+                            $this->controller->addMusic($_POST);
+                            break;
+
+                             case'addartist':
+//                            echo "";
+                            $this->controller->addArtist($_POST,$_FILES);
                             break;
 
                         default:

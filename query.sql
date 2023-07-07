@@ -25,3 +25,32 @@ VALUES("rehan","rehan@gmail.com","rehan",0,0,now(),now());
 
 INSERT INTO registration (username,email_id,password,is_premium,is_admin,created_at,updated_at)
 VALUES("kishore","kishore@gmail.com","admin",0,0,now(),now());
+
+
+
+-- adding music table
+CREATE TABLE artist (
+    id int not null auto_increment,
+    artist_name varchar(255)  not null,
+    PRIMARY KEY (id)
+
+);
+create table album(
+    id int not null auto_increment,
+    album_name varchar(255)  not null,
+    album_artist Int,
+    ablum_year varchar(4),
+    primary key(id),
+    FOREIGN KEY (album_artist) REFERENCES artist(id)
+);
+
+CREATE TABLE images (
+id int not null AUTO_INCREMENT,
+image_path varchar(255),
+    artist_id int,
+    album_id int,
+    PRIMARY key (id),
+    FOREIGN key (artist_id) REFERENCES artist(id),
+        FOREIGN key (album_id) REFERENCES album(id)
+
+);

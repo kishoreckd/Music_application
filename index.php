@@ -12,6 +12,10 @@ $router = new router();
 $router->get('/','list');
 $router->post('/login','login');
 $router->post('/logout','logout');
+$router->post('/addmusic','addmusic');
+$router->post('/addartist','addartist');
+
+
 
 
 
