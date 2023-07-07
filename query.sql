@@ -32,16 +32,19 @@ VALUES("kishore","kishore@gmail.com","admin",0,0,now(),now());
 CREATE TABLE artist (
     id int not null auto_increment,
     artist_name varchar(255)  not null,
+     created_at timestamp,
+    updated_at timestamp,
     PRIMARY KEY (id)
 
 );
 create table album(
     id int not null auto_increment,
     album_name varchar(255)  not null,
-    album_artist Int,
-    ablum_year varchar(4),
+    album_artist varchar (255)  not null ,
     primary key(id),
-    FOREIGN KEY (album_artist) REFERENCES artist(id)
+    FOREIGN KEY (album_artist) REFERENCES artist(id),
+      created_at timestamp,
+    updated_at timestamp
 );
 
 
@@ -52,6 +55,8 @@ image_path varchar(255),
     album_id int null,
     PRIMARY key (id),
     FOREIGN key (artist_id) REFERENCES artist(id),
-        FOREIGN key (album_id) REFERENCES album(id)
+        FOREIGN key (album_id) REFERENCES album(id),
+          created_at timestamp,
+    updated_at timestamp
 
 );

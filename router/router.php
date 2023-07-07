@@ -65,7 +65,7 @@ class router
                             break;
                         case'addmusic':
 //                            echo "";
-                            $this->controller->addMusic($_POST);
+                            $this->controller->addMusic($_POST,$_FILES);
                             break;
 
                              case'addartist':

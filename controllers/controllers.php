@@ -41,11 +41,15 @@ class Controller {
     }
     /**Adding Music*/
 
-    public function addMusic($data){
-        if ($data){
-
+    public function addMusic($data,$musicImage){
+        if ($data and $musicImage){
+            var_dump($data);
+            var_dump($musicImage);
+            $this->Model->addMusic($data,$musicImage);
         }
         else{
+            $artistname =$this->Model->showArtist();
+
             require "views/addmusic.php";
         }
     }
@@ -54,7 +58,7 @@ class Controller {
     public function addArtist($artist,$image){
         if ($artist and $image){
             $this->Model->addArtist($artist,$image);
-            echo "okie";
+            $this->home();
 
         }
         else{
