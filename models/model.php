@@ -31,6 +31,18 @@ class Model extends database{
         }
 
     }
+    public function checkadmin($data){
+        try {
+            $email=$data['email'];
+            $password=$data['password'];
+            $checkadmin=$this->db->query("select * from registration where email_id ='$email' and password ='$password' AND is_admin =1 ")->fetch(PDO::FETCH_OBJ);
+            return $checkadmin;
+        }
+        catch (PDOException $e){
+            die($e->getMessage());
+        }
+
+    }
 
 
 
@@ -61,11 +73,7 @@ class Model extends database{
 
 
 
-    /**It fetches all the artist in db and uses it for adding the music and also on home page**/
-    function showArtist(){
-      $artistnames=$this->db->query("select * from artist" )->fetchAll(PDO::FETCH_OBJ);
-      return$artistnames;
-    }
+
 
     /**It inserts the artist name and image in db and in the local**/
     public  function  addMusic($music,$musicImage){
@@ -88,5 +96,16 @@ class Model extends database{
         catch (PDOException $e){
             die($e->getMessage());
         }
+    }
+
+    /**It fetches all the music in db and uses it on home page**/
+    function showMusic(){
+        $album=$this->db->query("select * from album" )->fetchAll(PDO::FETCH_OBJ);
+        return$album;
+    }
+    /**It fetches all the artist in db and uses it for adding the music and also on home page**/
+    function showArtist(){
+        $artistnames=$this->db->query("select * from artist" )->fetchAll(PDO::FETCH_OBJ);
+        return$artistnames;
     }
 }

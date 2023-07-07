@@ -11,16 +11,60 @@ class Controller {
     }
 
 
+    /**In home page normal user can see alll the songs and artist**/
     public function home(){
-        require "views/home.php";
+        $album=$this->Model->showMusic();
+        require "views/home.view.php";
+    }
+
+    /**It returns artist list**/
+    public  function  artistlist(){
+        $artist=$this->Model->showArtist();
+        require "views/home.view.php";
+    }
+    /**It returns music list**/
+
+    public  function  musiclist(){
+        $album=$this->Model->showMusic();
+        require "views/home.view.php";
+    }
+    public  function addplaylist($datas){
+        if ($datas){
+            var_dump($datas);
+
+            if ($datas['playlist_for'] =='Artist'){
+                $artist=$this->Model->showArtist();
+                $_SESSION['Artist']=$datas['playlist_for'];
+                require "views/addplaylist.view.php";
+
+            }
+            if ($datas['playlist_for'] =='Album'){
+                $album=$this->Model->showMusic();
+                $_SESSION['Album']=$datas['playlist_for'];
+                require "views/addplaylist.view.php";
+
+            }
+
+
+
+        }
+        else{
+            require "views/addplaylist.view.php";
+        }
+
     }
 
     /**checking if the user is logged in **/
     public function loginPage($data){
         if ($data){
-           $checked= $this->Model->registration($data);
-           if ($checked){
-               $_SESSION['name']=$checked->username;
+           $checkadmin= $this->Model->checkadmin($data);
+           $check =$this->Model->registration($data);
+           if ($checkadmin){
+               $_SESSION['admin']=$checkadmin->username;
+               $this->home();
+           }
+           elseif ($check){
+               $_SESSION['user']=$check->username;
                $this->home();
            }
            else{
@@ -36,25 +80,24 @@ class Controller {
     /**logged out logout user*/
     public function logout(){
         session_destroy();
-        $this->home();
+        header("location:/");
 
     }
     /**Adding Music*/
 
     public function addMusic($data,$musicImage){
         if ($data and $musicImage){
-            var_dump($data);
-            var_dump($musicImage);
             $this->Model->addMusic($data,$musicImage);
+            $this->home();
+
         }
         else{
             $artistname =$this->Model->showArtist();
-
-            require "views/addmusic.php";
+            require "views/addmusic.view.php";
         }
     }
 
-    /**Adding Music*/
+    /**Adding Artist*/
     public function addArtist($artist,$image){
         if ($artist and $image){
             $this->Model->addArtist($artist,$image);
@@ -62,7 +105,7 @@ class Controller {
 
         }
         else{
-            require "views/addartist.php";
+            require "views/addartist.view.php";
         }
     }
 

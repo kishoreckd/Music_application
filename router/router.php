@@ -29,24 +29,7 @@ class router
         ];
         return $this;
     }
-    public function delete($uri, $action)
-    {
-        $this->router[] = [
-            'uri' => $uri,
-            'action' => $action,
-            'method' => 'DELETE',
-        ];
-        return $this;
-    }
-    public function patch($uri, $action)
-    {
-        $this->router[] = [
-            'uri' => $uri,
-            'action' => $action,
-            'method' => 'PATCH',
-        ];
-        return $this;
-    }
+
 
 
     public function routing()
@@ -56,17 +39,23 @@ class router
                 if ($router['action']) {
                     switch ($router['action']) {
                         case'login':
-//                            echo "";
                             $this->controller->loginPage($_POST);
                             break;
                         case'logout':
-//                            echo "";
                             $this->controller->logout();
                             break;
                         case'addmusic':
-//                            echo "";
                             $this->controller->addMusic($_POST,$_FILES);
                             break;
+                        case'artistlist':
+                            $this->controller->artistlist();
+                            break;
+                        case'addplaylist':
+                            $this->controller->addplaylist($_POST);
+                            break;
+                            case'musiclist':
+                        $this->controller->musiclist();
+                        break;
 
                              case'addartist':
 //                            echo "";

@@ -60,3 +60,14 @@ image_path varchar(255),
     updated_at timestamp
 
 );
+CREATE TABLE playlist(
+    id int not null AUTO_INCREMENT,
+    artist_id int,
+    album_id int,
+    created_at timestamp,
+    updated_at timestamp,
+    PRIMARY KEY (id),
+    FOREIGN key(artist_id) REFERENCES artist(id),
+        FOREIGN key(album_id) REFERENCES album(id)
+
+);
