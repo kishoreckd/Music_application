@@ -20,6 +20,13 @@ $router->post('/artistlist','artistlist');
 $router->post('/addplaylist','addplaylist');
 $router->post('/addplaylistalbum','addplaylistalbum');
 $router->post('/addplaylistartist','addplaylistartist');
+$router->post('/requestpremium','requestpremium');
+$router->post('/checkrequest','checkrequest');
+$router->post('/approve','approve');
+
+
+
+
 
 
 

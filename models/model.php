@@ -118,4 +118,34 @@ class Model extends database{
             $this->db->query("Insert into playlist (artist_id,created_at) values ('$datas',now())");
         }
     }
+
+
+
+    public function sendrequest($id){
+        $this->db->query("Insert into request (user_id,is_approved) values ('$id',0)");
+    }
+
+    public function checkpremium($id){
+        $checkuser=$this->db->query("select * from registration where id ='$id' AND is_premium=0")->fetch(PDO::FETCH_OBJ);
+        return $checkuser;
+    }
+    public function checkrequest(){
+        $checkrequest=$this->db->query("select * from request ")->fetchAll(PDO::FETCH_OBJ);
+        return$checkrequest;
+    }
+    public function checkingrequest(){
+        $checkrequest =$this->checkrequest();
+        foreach ($checkrequest as $request){
+//            var_dump(/);
+            $user=$this->db->query("select * from registration where id ='$request->user_id'")->fetch(PDO::FETCH_OBJ);
+            return $user;
+        }
+    }
+
+    public function approveondb($id){
+        $this->db->query("UPDATE registration SET is_premium = 1
+WHERE id ='$id'");
+        $this->db->query("UPDATE request  SET is_approved = 1
+WHERE user_id ='$id'");
+    }
 }

@@ -65,9 +65,19 @@ class router
                         break;
 
                              case'addartist':
-//                            echo "";
                             $this->controller->addArtist($_POST,$_FILES);
                             break;
+                        case'approve':
+                            $this->controller->approve($_POST);
+                            break;
+                        case'requestpremium':
+                            $this->controller->requestpremium($_POST);
+                            break;
+                        case'checkrequest':
+                            $this->controller->checkrequest($_POST);
+                            break;
+
+
 
                         default:
                             $this->controller->home();

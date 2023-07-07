@@ -68,9 +68,14 @@ class Controller {
            if ($checkadmin){
                $_SESSION['admin']=$checkadmin->username;
                $this->home();
+
            }
            elseif ($check){
                $_SESSION['user']=$check->username;
+//               $_SESSION['id']=$check->id;
+               $checking_id=$check->id;
+               $checkpremium =$this->Model->checkpremium($checking_id);
+               $_SESSION['id']=$checkpremium->id;
                $this->home();
            }
            else{
@@ -81,6 +86,11 @@ class Controller {
         else{
             require "views/registration/login.php";
         }
+    }
+
+    public function checkrequest(){
+        $checkrequest =$this->Model->checkingrequest();
+        require "views/home.view.php";
     }
 
     /**logged out logout user*/
@@ -104,15 +114,26 @@ class Controller {
     }
 
     /**Adding Artist*/
-    public function addArtist($artist,$image){
-        if ($artist and $image){
-            $this->Model->addArtist($artist,$image);
+    public function addArtist($artist,$image)
+    {
+        if ($artist and $image) {
+            $this->Model->addArtist($artist, $image);
             $this->home();
-
-        }
-        else{
+        } else {
             require "views/addartist.view.php";
         }
+    }
+    /**send requests premium*/
+    public function requestpremium($id){
+        $this->Model->sendrequest($id['request_user_id']);
+//        $this->home();
+        require "views/home.view.php";
+    }
+    /**approve requests premium by admin*/
+    public function approve($data){
+
+        $this->Model->approveondb( $data['user_id']);
+        header("location:/checkrequest");
     }
 
 }

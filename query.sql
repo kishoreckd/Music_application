@@ -40,7 +40,7 @@ CREATE TABLE artist (
 create table album(
     id int not null auto_increment,
     album_name varchar(255)  not null,
-    album_artist varchar (255)  not null ,
+    album_artist int ,
     primary key(id),
     FOREIGN KEY (album_artist) REFERENCES artist(id),
       created_at timestamp,
