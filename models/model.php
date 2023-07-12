@@ -95,6 +95,10 @@ class Model extends database{
             die($e->getMessage());
         }
     }
+    public function validation($song){
+        return $this->db->query("select * from album where album_name='$song'" )->fetchAll(PDO::FETCH_OBJ);
+
+    }
 
     /**It fetches all the music in db and uses it on home page**/
     function showMusic(){

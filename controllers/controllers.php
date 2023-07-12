@@ -112,10 +112,18 @@ class Controller {
     /**Adding Music*/
 
     public function addMusic($data,$musicImage){
+        unset($_SESSION['songerror']);
         if ($data and $musicImage){
-            $this->Model->addMusic($data,$musicImage);
-            $this->home();
-
+            $validate_song =$this->Model->validation($data['musicName']);
+            if ($validate_song){
+                $_SESSION['songerror']='Song name already existed';
+                $artistname =$this->Model->showArtist();
+                require "views/addmusic.view.php";
+            }
+            else{
+                $this->Model->addMusic($data,$musicImage);
+                $this->home();
+            }
         }
         else{
             $artistname =$this->Model->showArtist();
@@ -133,6 +141,7 @@ class Controller {
             require "views/addartist.view.php";
         }
     }
+
     /**send requests premium*/
     public function requestpremium($id){
         $this->Model->sendrequest($id['request_user_id']);

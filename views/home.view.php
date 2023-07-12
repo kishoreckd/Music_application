@@ -61,11 +61,9 @@
                                     </form>
                                 <?php endif;?>
                                 <?php if(isset($_SESSION['premiumid'])) :?>
-<!--                                    <form action="/requestpremium" method="post">-->
                                         <input type="hidden" name="request_user_id" value="<?php echo ($_SESSION['id'])?>">
                                         <button type="submit" class="text-red-600">*Premium*</button>
-<!--                                    </form>-->
-                                <?php endif;?>
+                               <?php endif;?>
 
 
 
@@ -146,8 +144,10 @@
 
 
                 <?php foreach ($album as $albumname): ?>
-                        <button name="projectId" class="text-blue-700 hover:text-white border border-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center mr-2 mb-2 dark:border-blue-500 dark:text-blue-500 dark:hover:text-white dark:hover:bg-blue-500 dark:focus:ring-blue-800" type ="submit" value="<?php echo $albumname->id?>"><?php echo $albumname->album_name?></button>
+
+                    <button name="projectId" class="text-blue-700 hover:text-white border border-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center mr-2 mb-2 dark:border-blue-500 dark:text-blue-500 dark:hover:text-white dark:hover:bg-blue-500 dark:focus:ring-blue-800" type ="submit" value="<?php echo $albumname->id?>"><?php echo $albumname->album_name?></button>
                 <?php endforeach; ?>
+
 
                 <?php foreach ($artist as $artistname): ?>
                         <button name="projectId" class="text-blue-700 hover:text-white border border-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center mr-2 mb-2 dark:border-blue-500 dark:text-blue-500 dark:hover:text-white dark:hover:bg-blue-500 dark:focus:ring-blue-800" type ="submit" value="<?php echo $artistname->id?>"><?php echo $artistname->artist_name?></button>
