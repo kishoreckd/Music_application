@@ -7,8 +7,8 @@ class database
         try {
             $this->db= new PDO
             ("mysql:host=localhost;dbname=music",
-                "admin",
-                "welcome");
+                "dckap",
+                "Dckap2023Ecommerce");
         } catch (PDOException $e) {
             die($e->getMessage());
         }
@@ -78,6 +78,7 @@ class Model extends database{
     /**It inserts the artist name and image in db and in the local**/
     public  function  addMusic($music,$musicImage){
         try {
+//            var_dump($music,$musicImage['music']);
             $musicname =$music['musicName'];
             $artistname =$music['artist'];
 
@@ -85,13 +86,10 @@ class Model extends database{
             $getting_data_album=$this->db->query("select * from album order by id desc limit 1");
             $getting_data_album=  $getting_data_album->fetch(PDO::FETCH_OBJ);
 
-            $tasksTotal = count($musicImage['music']['name']);
-            for( $i=0 ; $i < $tasksTotal ; $i++ ) {
-                $newFilePath = "images/music/".$musicImage['music']['name'][$i];
-                $tmpFilePath = $musicImage['music']['tmp_name'][$i];
+                $newFilePath = "images/music/".$musicImage['music']['name'];
+                $tmpFilePath = $musicImage['music']['tmp_name'];
                 move_uploaded_file($tmpFilePath, $newFilePath);
                 $this->db->query("Insert into images (image_path,album_id) values ('$newFilePath','$getting_data_album->id')");
-            }
         }
         catch (PDOException $e){
             die($e->getMessage());

@@ -46,7 +46,11 @@
                                 <form action="/addplaylist" method="post">
                                     <button type="submit"
                                             class="<?=url('/addplaylist')?'bg-gray-900 text-white':'text-gray-300'?> hover:bg-gray-700 hover:text-white rounded-md px-3 py-2 text-sm font-medium">Create Playlist</button>
-                                    <?php endif;?>
+                                    <form action="/showplaylist" method="post">
+                                        <button type="submit"
+                                                class="<?=url('/addplaylist')?'bg-gray-900 text-white':'text-gray-300'?> hover:bg-gray-700 hover:text-white rounded-md px-3 py-2 text-sm font-medium">show Playlist</button>
+
+                                        <?php endif;?>
 
                                 </form>
                                 <?php if(isset($_SESSION['id'])) :?>
