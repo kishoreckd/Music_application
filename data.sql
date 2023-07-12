@@ -46,7 +46,26 @@ create table album(
       created_at timestamp,
     updated_at timestamp
 );
+DROP TABLE playlist_name;
+CREATE TABLE playlist_name(
+    id int not null AUTO_INCREMENT,
+    playlistname varchar(255),
+    created_at timestamp,
+    updated_at timestamp,
+    PRIMARY KEY (id)
 
+);
+
+create table playlist(
+    id int not null auto_increment,
+    playlist_id int,
+    album_id int ,
+    primary key(id),
+    FOREIGN KEY (playlist_id) REFERENCES playlist_name(id),
+      created_at timestamp,
+    updated_at timestamp
+);
+alter table playlist add foreign key (album_id) REFERENCES album(id);
 
 CREATE TABLE images (
 id int not null AUTO_INCREMENT,
@@ -60,17 +79,10 @@ image_path varchar(255),
     updated_at timestamp
 
 );
-CREATE TABLE playlist_name(
-    id int not null AUTO_INCREMENT,
-    artist_id int,
-    album_id int,
-    created_at timestamp,
-    updated_at timestamp,
-    PRIMARY KEY (id),
-    FOREIGN key(artist_id) REFERENCES artist(id),
-        FOREIGN key(album_id) REFERENCES album(id)
 
-);
+
+
+
 CREATE TABLE request(
 id INT NOT null AUTO_INCREMENT,
 user_id int,
