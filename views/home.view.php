@@ -43,13 +43,13 @@
                                     </form>
                                 <?php endif; ?>
                                 <?php if (isset($_SESSION['user'])) :?>
-                                <form action="/addplaylist" method="post">
+                                <form action="/addplaylistname" method="post">
                                     <button type="submit"
-                                            class="<?=url('/addplaylist')?'bg-gray-900 text-white':'text-gray-300'?> hover:bg-gray-700 hover:text-white rounded-md px-3 py-2 text-sm font-medium">Create Playlist</button>
+                                            class="<?=url('/addplaylistname')?'bg-gray-900 text-white':'text-gray-300'?> hover:bg-gray-700 hover:text-white rounded-md px-3 py-2 text-sm font-medium">Create Playlist</button>
+                                </form>
                                     <form action="/showplaylist" method="post">
                                         <button type="submit"
-                                                class="<?=url('/addplaylist')?'bg-gray-900 text-white':'text-gray-300'?> hover:bg-gray-700 hover:text-white rounded-md px-3 py-2 text-sm font-medium">show Playlist</button>
-
+                                                class="<?=url('/showplaylist')?'bg-gray-900 text-white':'text-gray-300'?> hover:bg-gray-700 hover:text-white rounded-md px-3 py-2 text-sm font-medium">show Playlist</button>
                                         <?php endif;?>
 
                                 </form>
@@ -59,6 +59,12 @@
                                         <button type="submit"
                                                 class="<?=url('/requestpremium')?'bg-gray-900 text-white':'text-gray-300'?> hover:bg-gray-700 hover:text-white rounded-md px-3 py-2 text-sm font-medium">Request Premium</button>
                                     </form>
+                                <?php endif;?>
+                                <?php if(isset($_SESSION['premiumid'])) :?>
+<!--                                    <form action="/requestpremium" method="post">-->
+                                        <input type="hidden" name="request_user_id" value="<?php echo ($_SESSION['id'])?>">
+                                        <button type="submit" class="text-red-600">*Premium*</button>
+<!--                                    </form>-->
                                 <?php endif;?>
 
 
@@ -140,16 +146,19 @@
 
 
                 <?php foreach ($album as $albumname): ?>
-                    <form action="/albumdescription" method="post">
                         <button name="projectId" class="text-blue-700 hover:text-white border border-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center mr-2 mb-2 dark:border-blue-500 dark:text-blue-500 dark:hover:text-white dark:hover:bg-blue-500 dark:focus:ring-blue-800" type ="submit" value="<?php echo $albumname->id?>"><?php echo $albumname->album_name?></button>
-                    </form>
                 <?php endforeach; ?>
-                <?php foreach ($artist as $artistname): ?>
-                    <form action="/artistdescription" method="post">
-                        <button name="projectId" class="text-blue-700 hover:text-white border border-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center mr-2 mb-2 dark:border-blue-500 dark:text-blue-500 dark:hover:text-white dark:hover:bg-blue-500 dark:focus:ring-blue-800" type ="submit" value="<?php echo $artistname->id?>"><?php echo $artistname->artist_name?></button>
-                    </form>
 
+                <?php foreach ($artist as $artistname): ?>
+                        <button name="projectId" class="text-blue-700 hover:text-white border border-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center mr-2 mb-2 dark:border-blue-500 dark:text-blue-500 dark:hover:text-white dark:hover:bg-blue-500 dark:focus:ring-blue-800" type ="submit" value="<?php echo $artistname->id?>"><?php echo $artistname->artist_name?></button>
                 <?php endforeach; ?>
+
+                <?php foreach ($playlist as $playlists): ?>
+                    <form action="/addplaylistview" method="post">
+                        <button name="projectId" class="text-blue-700 hover:text-white border border-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center mr-2 mb-2 dark:border-blue-500 dark:text-blue-500 dark:hover:text-white dark:hover:bg-blue-500 dark:focus:ring-blue-800" type ="submit" value="<?php echo $playlists->id?>"><?php echo $playlists->playlistname?></button>
+                    </form>
+                <?php endforeach; ?>
+
                 <?php if($checkrequest): ?>
                 <form action="/approve" method="post" >
                     <p><?php echo $checkrequest->username ?> <span>

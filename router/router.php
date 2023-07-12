@@ -50,14 +50,20 @@ class router
                         case'artistlist':
                             $this->controller->artistlist();
                             break;
+                        case'addplaylistname':
+                            $this->controller->addplaylistname($_POST);
+                            break;
+                        case'showplaylist':
+                            $this->controller->showplaylist();
+                            break;
+                        case'addplaylistview':
+                            $this->controller->addplaylistview($_POST);
+                            break;
                         case'addplaylist':
                             $this->controller->addplaylist($_POST);
                             break;
-                        case'addplaylistalbum':
-                            $this->controller->addplaylistalbum($_POST);
-                            break;
-                        case'addplaylistartist':
-                            $this->controller->addplaylistartist($_POST);
+                        case'addsongplaylist':
+                            $this->controller->addsongplaylist($_POST);
                             break;
 
                             case'musiclist':

@@ -60,7 +60,7 @@ image_path varchar(255),
     updated_at timestamp
 
 );
-CREATE TABLE playlist(
+CREATE TABLE playlist_name(
     id int not null AUTO_INCREMENT,
     artist_id int,
     album_id int,

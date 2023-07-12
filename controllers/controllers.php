@@ -28,34 +28,42 @@ class Controller {
         $album=$this->Model->showMusic();
         require "views/home.view.php";
     }
-    public  function addplaylist($datas){
+    public  function addplaylistname($datas){
         if ($datas){
-            if ($datas['playlist_for'] =='Artist'){
-                $artist=$this->Model->showArtist();
-                $_SESSION['Artist']=$datas['playlist_for'];
-                require "views/addplaylistartist.view.php";
-            }
-            if ($datas['playlist_for'] =='Album'){
-                $album=$this->Model->showMusic();
-                $_SESSION['Album']=$datas['playlist_for'];
-                require "views/addplaylistalbum.view.php";
-            }
+            $this->Model->addplaylistname($datas);
+            $this->home();
         }
         else{
+            $album=$this->Model->showMusic();
+
             require "views/addplaylist.view.php";
         }
 
     }
-    public function addplaylistalbum($albums){
-//        addplaylist
-        $this->Model->addplaylistalbums($albums);
-        $this->home();
+
+    public function showplaylist(){
+       $playlist= $this->Model->showplaylistdb();
+        require "views/home.view.php";
 
     }
-    public function addplaylistartist($albums){
-//        addplaylist
-        $this->Model->addplaylistartist($albums);
+    public function addplaylistview($albums){
+        $oneplaylist = $this->Model->showoneplaylistdb($albums['projectId']);
+
+        $songs =$this->Model->showsongsforplaylist($albums['projectId']);
+
+        require "views/showingplaylist.view.php";
+    }
+
+    public function addplaylist($data){
+        $oneplaylist = $this->Model->showoneplaylistdb($data['playlist_id']);
+        $album=$this->Model->showMusic();
+
+        require "views/addsongplaylist.php";
+    }
+    public function addsongplaylist($data){
+    $this->Model->addsongplaylistdb($data);
         $this->home();
+
 
     }
 
@@ -72,10 +80,12 @@ class Controller {
            }
            elseif ($check){
                $_SESSION['user']=$check->username;
-//               $_SESSION['id']=$check->id;
                $checking_id=$check->id;
                $checkpremium =$this->Model->checkpremium($checking_id);
+               $ispremium =$this->Model->is_premium($checking_id);
                $_SESSION['id']=$checkpremium->id;
+
+               $_SESSION['premiumid']=$ispremium->id;
                $this->home();
            }
            else{

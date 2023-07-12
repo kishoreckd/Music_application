@@ -17,12 +17,15 @@ $router->post('/addmusic','addmusic');
 $router->post('/addartist','addartist');
 $router->post('/musiclist','musiclist');
 $router->post('/artistlist','artistlist');
+$router->post('/addplaylistname','addplaylistname');
+$router->post('/addplaylistview','addplaylistview');
+$router->post('/addsongplaylist','addsongplaylist');
 $router->post('/addplaylist','addplaylist');
-$router->post('/addplaylistalbum','addplaylistalbum');
-$router->post('/addplaylistartist','addplaylistartist');
 $router->post('/requestpremium','requestpremium');
 $router->post('/checkrequest','checkrequest');
 $router->post('/approve','approve');
+$router->post('/showplaylist','showplaylist');
+
 
 
 

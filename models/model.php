@@ -106,16 +106,40 @@ class Model extends database{
         $artistnames=$this->db->query("select * from artist" )->fetchAll(PDO::FETCH_OBJ);
         return$artistnames;
     }
-    public function addplaylistalbums($data){
-        foreach ($data['album'] as $datas){
-            $this->db->query("Insert into playlist (album_id,created_at) values ('$datas',now())");
+    public function addplaylistname($data){
+        $Playlistname =$data['playlist_name'];
+        $this->db->query("Insert into playlist_name (playlistname,created_at) values ('$Playlistname',now())");
+
+    }
+    public function showplaylistdb(){
+       return $this->db->query("select * from playlist_name")->fetchAll(PDO::FETCH_OBJ);
+
+    }
+    public function addsongplaylistdb($data){
+        $playlist_id =$data['playlist_id'];
+        $albumidcount =count($data['album']);
+        $album_id =$data['album'];
+
+        for ($i=0;$i<$albumidcount;$i++){
+            $this->db->query("Insert into playlist(playlist_id,album_id,created_at) values ('$playlist_id','$album_id[$i]',now())");
+
         }
     }
-    public function addplaylistartist($data){
-        foreach ($data['album'] as $datas){
-            $this->db->query("Insert into playlist (artist_id,created_at) values ('$datas',now())");
-        }
+    public function showoneplaylistdb($id){
+        return $this->db->query("select * from playlist_name where id =$id")->fetchAll(PDO::FETCH_OBJ);
+
     }
+    public  function showsongsforplaylist($id){
+        return $this->db->query("select album.album_name from playlist join album on playlist.album_id = album.id where playlist.playlist_id = '$id';")->fetchAll(PDO::FETCH_OBJ);
+    }
+    public  function fetchsong($id){
+        return $this->db->query("select * from album where playlist_id =$id")->fetchAll(PDO::FETCH_OBJ);
+    }
+//    public function addplaylistartist($data){
+//        foreach ($data['album'] as $datas){
+//            $this->db->query("Insert into playlist (artist_id,created_at) values ('$datas',now())");
+//        }
+//    }
 
 
 
@@ -125,6 +149,10 @@ class Model extends database{
 
     public function checkpremium($id){
         $checkuser=$this->db->query("select * from registration where id ='$id' AND is_premium=0")->fetch(PDO::FETCH_OBJ);
+        return $checkuser;
+    }
+    public function is_premium($id){
+        $checkuser=$this->db->query("select * from registration where id ='$id' AND is_premium=1")->fetch(PDO::FETCH_OBJ);
         return $checkuser;
     }
     public function checkrequest(){
